@@ -70,14 +70,14 @@ document.querySelectorAll(".js-add-to-cart")
                 matchItem.quantity+=1;
             }
             else{
-                cart.push({productId,quantity:1})
+                cart.push({productId,quantity:1});
             }
             let totalQuantity=0;
             cart.forEach((item)=>{
-                totalQuantity+=item.quantity
+                totalQuantity+=item.quantity;
             })
-            console.log(cart)
-            console.log(totalQuantity)
+            document.querySelector(".js-cart-quantity").innerHTML=totalQuantity;
+
         })
     })
     
