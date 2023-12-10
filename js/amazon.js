@@ -65,7 +65,7 @@ function ubdateCartQuantity(){
             })
             document.querySelector(".js-cart-quantity").innerHTML=totalQuantity;
 }
-
+ubdateCartQuantity();
 document.querySelectorAll(".js-add-to-cart")
     .forEach((button)=>{
         button.addEventListener('click',()=>{
