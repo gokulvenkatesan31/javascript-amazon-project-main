@@ -65,3 +65,11 @@ function savaToStorage(){
     console.log(matchItem.deliveryOption);
     savaToStorage();
  }
+
+ export function getNumberOfCartItem(){
+    let numberOfCartItem=0;
+    cart.forEach(index=>{
+        numberOfCartItem += 1;
+    })
+    return numberOfCartItem;
+ }
