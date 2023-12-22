@@ -2,7 +2,7 @@ import {addToCart, cart}  from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatcurrency } from './utils/money.js';
 let productHTML='';
-products.forEach((product)=>{
+    products.forEach((product)=>{
     const html=`
         <div class="product-container">
             <div class="product-image-container">

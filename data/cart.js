@@ -68,8 +68,8 @@ function savaToStorage(){
 
  export function getNumberOfCartItem(){
     let numberOfCartItem=0;
-    cart.forEach(index=>{
-        numberOfCartItem += 1;
+    cart.forEach(cartItem=>{
+        numberOfCartItem += cartItem.quantity ;
     })
     return numberOfCartItem;
  }
