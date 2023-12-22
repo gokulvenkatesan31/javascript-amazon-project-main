@@ -1,18 +1,12 @@
-import { cart,deleteCartItem, ubdateDeliveryOption }  from '../../data/cart.js';
+import { cart,deleteCartItem, ubdateDeliveryOption , updateQuantity}  from '../../data/cart.js';
 import { products,getProduct } from "../../data/products.js";
 import { formatcurrency } from '../utils/money.js';
-import {isweekend, deliveryOptions ,getDeliveryOption,calculateDeliverDate} from '../../data/delivaryOptions.js';
+import { deliveryOptions ,getDeliveryOption,calculateDeliverDate} from '../../data/delivaryOptions.js';
 import { renderpaymentsummary } from './paymentSummary.js';
 import { renderCheckOutHeader } from './checkOutHeader.js';
 
 
 export function renderOrderSummary(){
-    // const today1 =(dayjs());
-    // let newdate1= today1.add(1,'day')
-    // console.log(today1.format('dddd'))
-    // console.log(newdate1.format('dddd'))
-    // console.log(isweekend(newdate1.format('dddd')))
-  
     let cartSummaryHTML='';
     cart.forEach((cartItem)=>{
         let productId=cartItem.productId;
@@ -42,10 +36,16 @@ export function renderOrderSummary(){
                     </div>
                     <div class="product-quantity">
                     <span>
-                        Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                        Quantity: <span class="quantity-label  js-quantity-label-${matchProduct.id}">${cartItem.quantity}</span>
                     </span>
-                    <span class="update-quantity-link link-primary">
+                    <span class="update-quantity-link link-primary js-update-link"
+                    data-product-id="${matchProduct.id}">
                         Update
+                    </span>
+                    <input class="quantity-input js-quantity-input-${matchProduct.id}">
+                    <span class="save-quantity-link link-primary js-save-link"
+                        data-product-id="${matchProduct.id}">
+                            Save
                     </span>
                     <span class="delete-quantity-link link-primary js-delete-link"
                         data-product-id=${productId}   >
@@ -125,6 +125,54 @@ export function renderOrderSummary(){
 
 
     
+
+    document.querySelectorAll('.js-update-link')
+    .forEach((link) => {
+        link.addEventListener('click', () => {
+        const productId = link.dataset.productId;
+
+        const container = document.querySelector(
+            `.js-cart-item-container-${productId}`
+        );
+        container.classList.add('is-editing-quantity');
+        });
+    });
+
+    document.querySelectorAll('.js-save-link')
+    .forEach((link) => {
+        link.addEventListener('click', () => {
+        const productId = link.dataset.productId;
+
+        const container = document.querySelector(
+            `.js-cart-item-container-${productId}`
+        );
+        container.classList.remove('is-editing-quantity');
+
+        const quantityInput = document.querySelector(
+            `.js-quantity-input-${productId}`
+        );
+        const newQuantity = Number(quantityInput.value);
+        updateQuantity(productId, newQuantity);
+
+        // renderCheckoutHeader();
+        renderOrderSummary();
+        // renderPaymentSummary();
+
+        // We can delete the code below (from the original solution)
+        // because instead of using the DOM to update the page directly
+        // we can use MVC and re-render everything. This will make sure
+        // the page always matches the data.
+
+        // const quantityLabel = document.querySelector(
+        //   `.js-quantity-label-${productId}`
+        // );
+        // quantityLabel.innerHTML = newQuantity;
+
+        // updateCartQuantity();
+        });
+    });    
+
+
 
     renderCheckOutHeader();
     renderpaymentsummary();
