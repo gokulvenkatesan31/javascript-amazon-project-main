@@ -1,7 +1,6 @@
 import { cart,deleteCartItem, ubdateDeliveryOption }  from '../../data/cart.js';
 import { products,getProduct } from "../../data/products.js";
 import { formatcurrency } from '../utils/money.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {isweekend, deliveryOptions ,getDeliveryOption,calculateDeliverDate} from '../../data/delivaryOptions.js';
 import { renderpaymentsummary } from './paymentSummary.js';
 import { renderCheckOutHeader } from './checkOutHeader.js';
@@ -21,7 +20,7 @@ export function renderOrderSummary(){
 
         let deliveryOptionId=cartItem.deliveryOption;
         const deliveryOption = getDeliveryOption(deliveryOptionId)
-        const dayString = calculateDeliverDate(deliveryDate)
+        const dayString = calculateDeliverDate(deliveryOption)
         cartSummaryHTML+=`
             <div class="cart-item-container 
                 js-cart-item-container-${productId}
@@ -73,7 +72,7 @@ export function renderOrderSummary(){
         let HTML='';
         deliveryOptions.forEach((deliveryOption)=>{
 
-            const dayString = calculateDeliverDate(deliveryOptionS);
+            const dayString = calculateDeliverDate(deliveryOption);
             const priceSring = deliveryOption.priceCent===0 ? 'FREE ': `$${formatcurrency(deliveryOption.priceCent)} - `;
             const ischecked= deliveryOption.id===cartItem.deliveryOption;
 
