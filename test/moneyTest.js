@@ -24,3 +24,4 @@ if(formatcurrency(0)=== '0.00'){
 }else{
     console.log("failed")
 }
+
