@@ -28,12 +28,16 @@ export function renderpaymentsummary(){
 
     <div class="payment-summary-row">
         <div>Items (${getNumberOfCartItem()}):</div>
-        <div class="payment-summary-money">$${formatcurrency(CartPriceCents)}</div>
+        <div class="payment-summary-money
+        
+        ">$${formatcurrency(CartPriceCents)}</div>
     </div>
 
     <div class="payment-summary-row">
         <div>Shipping &amp; handling:</div>
-        <div class="payment-summary-money">$${formatcurrency(shippingPriceCents)}</div>
+        <div class="payment-summary-money
+        js-payment-summary-money-shipment
+        ">$${formatcurrency(shippingPriceCents)}</div>
     </div>
 
     <div class="payment-summary-row subtotal-row">
@@ -48,7 +52,8 @@ export function renderpaymentsummary(){
 
     <div class="payment-summary-row total-row">
         <div>Order total:</div>
-        <div class="payment-summary-money">$${formatcurrency(PriceCentswithTax)}</div>
+        <div class="payment-summary-money
+        js-payment-summary-total-money">$${formatcurrency(PriceCentswithTax)}</div>
     </div>
 
     <button class="place-order-button button-primary">

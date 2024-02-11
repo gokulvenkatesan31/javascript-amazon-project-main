@@ -29,10 +29,13 @@ export function renderOrderSummary(){
                     src="${matchProduct.image}">
 
                 <div class="cart-item-details">
-                    <div class="product-name">
+                    <div class="product-name
+                    js-product-name-${matchProduct.id}
+                    ">
                     ${matchProduct.name}
                     </div>
-                    <div class="product-price">
+                    <div class="product-price
+                    js-product-price-${matchProduct.id}">
                     $${formatcurrency(matchProduct.priceCents)}
                     </div>
                     <div class="product-quantity
@@ -70,7 +73,7 @@ export function renderOrderSummary(){
     })
     document.querySelector(".js-order-summary").innerHTML=cartSummaryHTML;
 
-    function deliveryOptionHTML(productId,cartItem){
+     function deliveryOptionHTML(productId,cartItem){
         let HTML='';
         deliveryOptions.forEach((deliveryOption)=>{
 
@@ -79,13 +82,14 @@ export function renderOrderSummary(){
             const ischecked= deliveryOption.id===cartItem.deliveryOption;
 
             HTML+=`
-                    <div class="delivery-option js-delivery-option"
+                    <div class="delivery-option js-delivery-option
+                    js-delivary-option-product-id-${productId}-delivary-option-id-${deliveryOption.id}"
                         data-product-id='${productId}'
                         data-delivery-option-id ='${deliveryOption.id}'    
                     >
                     <input type="radio"
                         ${ischecked? 'checked' : ''}
-                        class="delivery-option-input"
+                        class="delivery-option-input js-delivary-option-input-product-id-${productId}-delivary-option-id-${deliveryOption.id}"
                         name="delivery-option-${productId}">
                     <div>
                         <div class="delivery-option-date">

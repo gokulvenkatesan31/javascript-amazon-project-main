@@ -64,9 +64,11 @@ function saveToStorage(){
             matchItem=item;
         }
     })
+    if(matchItem){
+        matchItem.deliveryOption=deliveryOptionId;
+        saveToStorage();
+    }
     
-    matchItem.deliveryOption=deliveryOptionId;
-    saveToStorage();
  }
 
  export function getNumberOfCartItem(){
