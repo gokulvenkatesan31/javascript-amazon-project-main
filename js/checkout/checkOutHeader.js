@@ -3,7 +3,7 @@ import { getNumberOfCartItem } from "../../data/cart.js";
 export function renderCheckOutHeader(){
     const html=`<div class="header-content">
     <div class="checkout-header-left-section">
-      <a href="amazon.html">
+      <a href="index.html">
         <img class="amazon-logo" src="images/amazon-logo.png">
         <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
       </a>
@@ -11,7 +11,7 @@ export function renderCheckOutHeader(){
 
     <div class="checkout-header-middle-section">
       Checkout (<a class="return-to-home-link js-return-to-home-link "
-        href="amazon.html">3 items</a>)
+        href="index.html">3 items</a>)
     </div>
 
     <div class="checkout-header-right-section">
